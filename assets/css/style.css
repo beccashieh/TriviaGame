@@ -1,0 +1,16 @@
+.jumbotron {
+    align-content: center;
+}
+
+.timer-row, .question-row, .answer-row {
+    align-content: center;
+    background-color: red;
+}
+
+.answers {
+    float: left;
+}
+
+.answer-row {
+    flex-flow: row wrap;
+}
