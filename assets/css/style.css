@@ -1,10 +1,11 @@
 .jumbotron {
     align-content: center;
+    background-color: rgb(7, 8, 15);
+    color: white;
 }
 
 .timer-row, .question-row, .answer-row {
     align-content: center;
-    background-color: red;
 }
 
 .answers {
@@ -13,4 +14,18 @@
 
 .answer-row {
     flex-flow: row wrap;
+}
+
+#after-submit {
+    visibility: hidden;
+}
+
+#quiz {
+    background-color: rgba(215, 230, 233, 0.877);
+    border-radius: 20px;
+    opacity: 40%;
+}
+
+img {
+    visibility: hidden;
 }

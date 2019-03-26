@@ -1,56 +1,78 @@
 <!doctype html>
 <html lang="en">
-  <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Trivia Game</title>
+<head>
 
-  </head>
-  <body>
-    <div class="jumbotron">
-        <h1 class="text-center">
-            <strong>Game of Thrones Trivia</strong>
-        </h1>
-        <p class="text-center">Will you be worthy of the Iron Throne?</p>
-        <hr class="my-4">
-        <div id="musicControls" class="text-center">
-                <button class="btn btn-warning btn-xs theme-button">
-                  <span class="fa fa-music"></span> Play Theme!</button>
-                <button class="btn btn-dark btn-xs pause-button">
-                  <span class="fa fa-pause"></span> Pause Song</button>
-        </div>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    body {
+      background-image: url("assets/images/title.jpg");
+    }
+  </style>
+  <title>Trivia Game</title>
+
+</head>
+
+<body>
+  <div class="jumbotron">
+    <h1 class="text-center">
+      <strong>Game of Thrones Trivia</strong>
+    </h1>
+    <p class="text-center">Will you be worthy of the Iron Throne?</p>
+    <hr class="my-4">
+    <div id="musicControls" class="text-center">
+      <button class="btn btn-warning btn-xs theme-button">
+        <span class="fa fa-music"></span> Play Theme!</button>
+      <button class="btn btn-dark btn-xs pause-button">
+        <span class="fa fa-pause"></span> Pause Song</button>
     </div>
+  </div>
 
-    <div class="container">
+  <div class="container">
 
-        <div class="text-center timer-row">
-            <h4 id="timer">Timer</h4>
-        </div>
-
-        <div class="question-row">
-            <h3 class="text-center question">Question goes here</h3>
-        </div>
-
-        <div class="answer-row">
-                <img src="https://loremflickr.com/320/240/dog" alt="#" height="200px" width="200px"/>
-            <div class="col-8 text-center answers">
-                <p>Answer 1</p>
-                <p>Answer 2</p>
-                <p>Answer 3</p>
-                <p>Answer 4</p>
-            </div>
-        </div>
-
-
+    <div class="text-center timer-row">
+      <h4 id="timer" style="display: none;">Timer</h4>
     </div>
+    <form id="quiz" name="quiz">
+      <div class="question-row">
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+        <h3 class="text-center question">Question goes here</h3>
+      </div>
+
+      <div class="answer-row">
+        <img src="https://loremflickr.com/320/240/dog" alt="#" height="200px" width="200px" />
+        <div class="col-8 text-center answers" id="answers">
+          <input type="radio" class="answer" value=""><br>
+          <input type="radio" class="answer" value=""><br>
+          <input type="radio" class="answer" value=""><br>
+          <input type="radio" class="answer" value=""><br>
+          <p id="correct-answer" style="display: none;"></p>
+          <input type="button" id="button" value="Submit" onclick="check();">
+        </div>
+    </form>
+    <div id="after-submit">
+      <p id="number-correct"></p>
+    </div>
+  </div>
+
+
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
