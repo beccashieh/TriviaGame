@@ -1,7 +1,10 @@
-.jumbotron {
+.headline {
     align-content: center;
     background-color: rgb(7, 8, 15);
     color: white;
+    height: 80px;
+    margin-top: 220px;
+    padding: 20px;
 }
 
 .timer-row, .question-row, .answer-row {
@@ -20,10 +23,16 @@
     visibility: hidden;
 }
 
+* {
+    font-family: 'Source Serif Pro', serif;
+}
+
 #quiz {
+    margin-top: 70px;
+    padding-top: 20px;
     background-color: rgba(215, 230, 233, 0.877);
     border-radius: 20px;
-    opacity: 40%;
+    opacity: 0%;
 }
 
 img {
