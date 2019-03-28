@@ -27,7 +27,8 @@
   <div class="container" id="game">
 
     <div class="text-center timer-row">
-      <h4 id="timer" style="display: none;">Timer</h4>
+      <h4 id="timer">Timer</h4>
+      <h3 id="message"></h3>
     </div>
     <form id="quiz" name="quiz">
       <div class="question-row">
@@ -38,13 +39,14 @@
       <div class="answer-row">
         <img src="https://loremflickr.com/320/240/dog" alt="#" height="200px" width="200px" />
         <div class="col-8 text-center answers" id="answers">
-          <input type='radio' class="choices" id="test1" name='mylist'/><label for="test1">option 1</label><br>
-          <input type='radio' class="choices" id="test2" name='mylist'/><label for="test2">option 2</label><br>
-          <input type='radio' class="choices" id="test3" name='mylist'/><label for="test3">option 3</label><br>
-          <input type='radio' class="choices" id="test4" name='mylist'/><label for="test4">option 4</label><br>
+          <button type="button" class="btn btn-secondary btn-sm btn-block choice" id="test1">Block level button</button>          
+          <button type="button" class="btn btn-secondary btn-sm btn-block choice" id="test2">Block level button</button>         
+          <button type="button" class="btn btn-secondary btn-sm btn-block choice" id="test3">Block level button</button>
+          <button type="button" class="btn btn-secondary btn-sm btn-block choice" id="test4">Block level button</button>
           <p id="correct-answer" style="display: none;"></p>
-          <input type="button" id="button" value="Submit" onclick="check();">
+          <input type="button" id="subButton" value="Submit" onclick="check();">
         </div>
+      </div>
     </form>
     <div id="after-submit">
       <p id="number-correct"></p>

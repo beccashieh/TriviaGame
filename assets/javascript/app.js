@@ -32,18 +32,50 @@ var questionObj = [
 var correct = 0;
 var inCorrect= 0;
 
+//Timer details
+var intervalId;
+var number= 30;
+
+function run(){
+    var number = 30;
+    var timerCountdown = setInterval (function(){
+        $("#timer").html(":" + number + " seconds left");
+        number--
+        if (number === 0){
+            $("#message").html("Time's up!!!");
+            console.log("Time's Up!");
+            clearInterval(timerCountdown);
+        }
+    }, 1000);
+       
+}
+
+run();
+
+
+
+
+
+
 //Populates each new question from the questionObj into the ".question" class html.
 function quiz(){
+
     for (var i = 0; i < questionObj.length; i++){
         $(".question").html(questionObj[i].question);
         for (var j = 0; j < questionObj.length; j++){
             $("#test1").html(questionObj[i].choices[0]);
-            $("#test2").text(questionObj[i].choices[1]);
-            $("#test3").text(questionObj[i].choices[2]);
-            $("#test4").text(questionObj[i].choices[3]);
+            $("#test2").html(questionObj[i].choices[1]);
+            $("#test3").html(questionObj[i].choices[2]);
+            $("#test4").html(questionObj[i].choices[3]);
         }
     }
-
+    
+    //check user selection against correctAnswer. 
+    //if correct, turn button background to green.
+        //correct++
+    //if incorrect, turn button red.
+        //incorrect++
+    
     
     //function check(){
         //$("#after-submit").css("visibility", "visible");
@@ -57,17 +89,17 @@ quiz();
 
 
 //Sets up audio element
-//var audioElement = document.createElement("audio");
-//audioElement.setAttribute("src", "./assets/gameOfThrones.mp3");
+var audioElement = document.createElement("audio");
+audioElement.setAttribute("src", "assets/gameOfThrones.mp3");
 // Theme Button-- plays music on click.
-    //$(".theme-button").on("click", function() {
-        //audioElement.play();
-      //});
+    $(".theme-button").on("click", function() {
+        audioElement.play();
+      });
 
 // Pause Button-- pauses music on click.
-    //$(".pause-button").on("click", function() {
-        //audioElement.pause();
-      //});
+    $(".pause-button").on("click", function() {
+        audioElement.pause();
+      });
 
 //questions will show with 4 possible choices. 
 
