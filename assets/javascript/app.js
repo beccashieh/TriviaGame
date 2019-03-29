@@ -6,31 +6,32 @@ var questionObj = [
     {
         question: "How many fingertips did Stannis chop off of Davos' hand?",
         choices: ["One", "Two", "Three", "Four"],
-        correctAnswer: "Four"
+        correctAnswer: 3
     },
     {
         question: "Who is king of Westeros when the series began?",
         choices: ["Eddard Stark", "Aerys Targaryan", "Robert Baratheon", "Theon Greyjoy"],
-        correctAnswer: "Robert Baratheon"
+        correctAnswer: 2
     },
     {
         question: "At the end of his training, what must an unsullied kill to prove he has no weakness?",
         choices: ["A baby calf", "A member of his training group", "A newborn child", "An elderly slave"],
-        correctAnswer: "A newborn child"
+        correctAnswer: 2
     },
     {
         question: "What house is Catelyn Stark from?",
         choices: ["Baratheon", "Tyrell", "Targaryan", "Tully"],
-        correctAnswer: "Tully"
+        correctAnswer: 3
     },
     {
         question: "What is the name of the person who chopped off Jaime's right hand?",
         choices: ["Locke", "Tyrion Lannister", "Breanne of Tarth", "The Mountain"],
-        correctAnswer: "Locke"
+        correctAnswer: 0
     },
 ];
 var correct = 0;
 var inCorrect= 0;
+var questionsAns= 0;
 
 //Timer details
 var intervalId;
@@ -55,20 +56,47 @@ run();
 
 
 
+var myAnswer;
 
 
-//Populates each new question from the questionObj into the ".question" class html.
 function quiz(){
 
+    //Populates each new question from the questionObj into the ".question" class html.
     for (var i = 0; i < questionObj.length; i++){
+        console.log(questionObj[i].correctAnswer);
+        myAnswer = questionObj[i].correctAnswer;
+        
         $(".question").html(questionObj[i].question);
-        for (var j = 0; j < questionObj.length; j++){
+        
+        for (var j = 0; j < questionObj[i].choices.length; j++){
+            console.log(j);
+            
             $("#test1").html(questionObj[i].choices[0]);
             $("#test2").html(questionObj[i].choices[1]);
             $("#test3").html(questionObj[i].choices[2]);
             $("#test4").html(questionObj[i].choices[3]);
+
+            $(".choice").on("click", function(){
+                console.log(this);
+                console.log(myAnswer);
+            
+                console.log($(this).attr("value"));
+                if($(this).attr("value") == myAnswer){
+                    correct++;
+                    console.log("Hurray!");
+                    $(this).css("background-color", "green");
+                } else {
+                    $(this).css("background-color", "red");
+                    console.log("Boo!");
+
+                }
+                questionsAns++;
+            })
         }
+        
     }
+
+    
     
     //check user selection against correctAnswer. 
     //if correct, turn button background to green.
@@ -81,6 +109,8 @@ function quiz(){
         //$("#after-submit").css("visibility", "visible");
         //$("#number-correct").html("You got " + correct + " correct and " + inCorrect + "incorrect!")
     }
+
+
 quiz();
 });
 
