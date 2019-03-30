@@ -113,7 +113,9 @@ function check(){
     render();
 }
 
-
+var audio = new Audio();
+audio.src = "assets/gameOfThrones.mp3";
+audio.play();
 
 
 
