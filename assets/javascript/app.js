@@ -22,7 +22,8 @@ function countDown(){
             $("#message").html("Your watch has ended").show();
             $("#subButton").hide();
         }
-    }, 1000);       
+    }, 1000);      
+    return false; 
 }
 
 //Array containing questions, choices, and the correct answer.
@@ -30,7 +31,7 @@ var questions = [
     ["How many fingertips did Stannis chop off of Davos' hand?","One", "Two", "Three", "Four", "D"],
     ["Who is king of Westeros when the series begins?","Eddard Stark", "Aerys Targaryan", "Robert Baratheon", "Theon Greyjoy", "C"],
     ["At the end of his training, what must an unsullied kill to prove he has no weakness?","A baby calf", "A member of his training group", "A newborn child", "An elderly slave", "C"],
-    ["What house is Catelyn Stark from?", "Baratheon", "Tyrell", "Targaryan", "Tully", "Tully"],
+    ["What house is Catelyn Stark from?", "Baratheon", "Tyrell", "Targaryan", "Tully", "D"],
     ["What is the name of the person who chopped off Jaime's right hand?", "Locke", "Tyrion Lannister", "Breanne of Tarth", "The Mountain", "A"]
 ];//End of questions array.
 
@@ -84,8 +85,11 @@ $("#re-start").on("click", function restart(){
     pos = 0;
     correct = 0;
     incorrect = 0;
+    seconds = 30;
     render();
     $("#message").hide();
+    $("#re-start").hide();
+    $("#start").show();
 });
 
 //Check answer function to compare the user choice against the correct answer in the array.
