@@ -1,3 +1,7 @@
+* {
+    font-family: 'Source Serif Pro', serif;
+}
+
 .headline {
     align-content: center;
     background-color: rgb(7, 8, 15);
@@ -7,25 +11,8 @@
     padding: 20px;
 }
 
-.timer-row, .question-row, .answer-row {
-    align-content: center;
-}
-
-.answers {
-    float: left;
-}
-
-.answer-row {
-    flex-flow: row wrap;
-    margin-left: 260px;
-}
-
-#after-submit {
-    visibility: hidden;
-}
-
-* {
-    font-family: 'Source Serif Pro', serif;
+#game {
+    display: none;
 }
 
 #quiz {
@@ -33,23 +20,51 @@
     padding-top: 20px;
     background-color: rgba(215, 230, 233, 0.877);
     border-radius: 20px;
-    opacity: 0%;
+    opacity: 0.75;
     overflow-block: initial;
+    padding: 40px;
 }
 
-#answers {
-    text-align: left;
-}
-
-
-img {
-    visibility: hidden;
-}
-
-#timer, #message {
-    opacity: 0%;
+#timer {
+    margin-top: 20px;
+    opacity: 0.75;
     border-radius: 20px;
     width: 200px;
     margin-left: 450px;
     background-color: rgba(215, 230, 233, 0.877);
+    display: none;
+}
+
+#message {
+    background-color: red;
+    border-radius: 20px;
+    opacity: 0.75;
+    padding: 20px;
+    display: none;
+}
+
+#start {
+    border-radius: 20px;
+    margin-left: 500px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#re-start {
+    border-radius: 20px;
+    margin-left: 500px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+#subButton {
+    border-radius: 20px;
+    margin-left: 500px;
+    display: none;
+}
+
+#testStatus {
+    color:  rgba(215, 230, 233, 0.877);
+    opacity: .5;
 }

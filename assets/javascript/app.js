@@ -1,137 +1,120 @@
-//function for game to start upon page loading
-$(document).ready(function() {
+//function for game to start upon clicking start button.
+$("#start").on("click", function(){
+    $(this).hide();
+    //Hides the start button window and displays the game container.
+    $("#game").show();
+    $("#timer").show();
+    $("#subButton").show();
+    countDown();
+    render();
+})
 
-//global variables:
-var questionObj = [
-    {
-        question: "How many fingertips did Stannis chop off of Davos' hand?",
-        choices: ["One", "Two", "Three", "Four"],
-        correctAnswer: 3
-    },
-    {
-        question: "Who is king of Westeros when the series began?",
-        choices: ["Eddard Stark", "Aerys Targaryan", "Robert Baratheon", "Theon Greyjoy"],
-        correctAnswer: 2
-    },
-    {
-        question: "At the end of his training, what must an unsullied kill to prove he has no weakness?",
-        choices: ["A baby calf", "A member of his training group", "A newborn child", "An elderly slave"],
-        correctAnswer: 2
-    },
-    {
-        question: "What house is Catelyn Stark from?",
-        choices: ["Baratheon", "Tyrell", "Targaryan", "Tully"],
-        correctAnswer: 3
-    },
-    {
-        question: "What is the name of the person who chopped off Jaime's right hand?",
-        choices: ["Locke", "Tyrion Lannister", "Breanne of Tarth", "The Mountain"],
-        correctAnswer: 0
-    },
-];
-var correct = 0;
-var inCorrect= 0;
-var questionsAns= 0;
+//Timer function
+var seconds = 30;
 
-//Timer details
-var intervalId;
-var number= 30;
-
-function run(){
-    var number = 30;
-    var timerCountdown = setInterval (function(){
-        $("#timer").html(":" + number + " seconds left");
-        number--
-        if (number === 0){
-            $("#message").html("Time's up!!!");
-            console.log("Time's Up!");
-            clearInterval(timerCountdown);
+function countDown(){
+    var timer = setInterval(function(){
+        seconds--;
+        $("#timer").html(": " + seconds);
+        console.log(seconds);
+        if (seconds <= 0){
+            clearInterval(timer);
+            $("#message").html("Your watch has ended").show();
+            $("#subButton").hide();
         }
-    }, 1000);
-       
+    }, 1000);       
 }
 
-run();
+//Array containing questions, choices, and the correct answer.
+var questions = [
+    ["How many fingertips did Stannis chop off of Davos' hand?","One", "Two", "Three", "Four", "D"],
+    ["Who is king of Westeros when the series begins?","Eddard Stark", "Aerys Targaryan", "Robert Baratheon", "Theon Greyjoy", "C"],
+    ["At the end of his training, what must an unsullied kill to prove he has no weakness?","A baby calf", "A member of his training group", "A newborn child", "An elderly slave", "C"],
+    ["What house is Catelyn Stark from?", "Baratheon", "Tyrell", "Targaryan", "Tully", "Tully"],
+    ["What is the name of the person who chopped off Jaime's right hand?", "Locke", "Tyrion Lannister", "Breanne of Tarth", "The Mountain", "A"]
+];//End of questions array.
 
+var pos= 0; //records where the user is in the test.
+var correct = 0;
+var inCorrect= 0;
+var chA;//contains individual answer
+var chB;
+var chC;
+var chD;
+var userChoice;//user's selected answer
+var choices;//contains the possible answers
+var quiz; //test div
+var testStatus; //contains heading that displays the user's progress in the quiz.
+ //grabs question from the array.
 
-
-
-var myAnswer;
-
-
-function quiz(){
-
-    //Populates each new question from the questionObj into the ".question" class html.
-    for (var i = 0; i < questionObj.length; i++){
-        console.log(questionObj[i].correctAnswer);
-        myAnswer = questionObj[i].correctAnswer;
+//grab elements from the web page.
+function get(x){
+    return document.getElementById(x);
+  }
+    
+// Q & A Generator
+function render(){
+    test = $("#quiz");
+    if (pos >= questions.length){
+        $("#quiz").html("<h2>" + "You got " + correct + " of " + questions.length + " questions correct!</h2>" 
+        + "<br>" + "<h2>" + "You got " + inCorrect + " of " + questions.length + " questions wrong!" + "<h2>");
+        $("#testStatus").html("Test Completed");
+        $("#re-start").show();
         
-        $(".question").html(questionObj[i].question);
-        
-        for (var j = 0; j < questionObj[i].choices.length; j++){
-            console.log(j);
-            
-            $("#test1").html(questionObj[i].choices[0]);
-            $("#test2").html(questionObj[i].choices[1]);
-            $("#test3").html(questionObj[i].choices[2]);
-            $("#test4").html(questionObj[i].choices[3]);
-
-            $(".choice").on("click", function(){
-                console.log(this);
-                console.log(myAnswer);
-            
-                console.log($(this).attr("value"));
-                if($(this).attr("value") == myAnswer){
-                    correct++;
-                    console.log("Hurray!");
-                    $(this).css("background-color", "green");
-                } else {
-                    $(this).css("background-color", "red");
-                    console.log("Boo!");
-
-                }
-                questionsAns++;
-            })
-        }
-        
+        //to stop the render function from continuing to run after the quiz has been completed...
+        return false;
     }
+    //Indicates which question the user is currently on in the quiz.
+    $("#testStatus").html("Question " + (pos+1) + " of " + questions.length);
+    //renders the question.
+    var question = questions[pos][0];
+    //renders each choice as a radio button within the quiz div.
+    chA = questions[pos][1];
+    chB = questions[pos][2];
+    chC = questions[pos][3];
+    chD = questions[pos][4];
+    $("#quiz").html("<h3>" + question + "</h3>");
+    $("#quiz").append("<input type='radio' name='choices' value='A' class='button'> "+chA+"<br>");
+    $("#quiz").append("<input type='radio' name='choices' value='B' class='button'> "+chB+"<br>");    
+    $("#quiz").append("<input type='radio' name='choices' value='C' class='button'> "+chC+"<br>");
+    $("#quiz").append("<input type='radio' name='choices' value='D' class='button'> "+chD+"<br>");
+}
 
-    
-    
-    //check user selection against correctAnswer. 
-    //if correct, turn button background to green.
-        //correct++
-    //if incorrect, turn button red.
-        //incorrect++
-    
-    
-    //function check(){
-        //$("#after-submit").css("visibility", "visible");
-        //$("#number-correct").html("You got " + correct + " correct and " + inCorrect + "incorrect!")
-    }
-
-
-quiz();
+$("#re-start").on("click", function restart(){
+    pos = 0;
+    correct = 0;
+    incorrect = 0;
+    render();
+    $("#message").hide();
 });
 
+//Check answer function to compare the user choice against the correct answer in the array.
+function check(){
+    var correctAns = questions[pos][5];
+    choices = document.getElementsByName("choices");
+    for (var i = 0; i < choices.length; i++){
+        if (choices[i].checked){
+            userChoice = choices[i].value;
+            console.log(correctAns);
+            console.log(choices[i].checked);
+            console.log(userChoice, "Choice");
+        }
+    }
+    //correct answers increase if the user selection matches the correct answer located at the end of each array, pos 5.
+    if (userChoice == correctAns){
+        correct++;
+    }
+    //if the answers do not match, incorrect tally increase.
+    else {
+        inCorrect++;
+    }
+    //position changes and render function runs again to continue to next question.
+    pos++;
+    render();
+}
 
-//Populates each corresponding choices array from the questionObj into the ".answer" class radio buttons.
 
 
-//Sets up audio element
-var audioElement = document.createElement("audio");
-audioElement.setAttribute("src", "assets/gameOfThrones.mp3");
-// Theme Button-- plays music on click.
-    $(".theme-button").on("click", function() {
-        audioElement.play();
-      });
-
-// Pause Button-- pauses music on click.
-    $(".pause-button").on("click", function() {
-        audioElement.pause();
-      });
-
-//questions will show with 4 possible choices. 
 
 
     //timer will alot 30 seconds for each question. 
