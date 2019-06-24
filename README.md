@@ -22,7 +22,11 @@ Further expansion of this game would include timing each question and displaying
 
 ## Built With
 
-* [Bootstrap](https://getbootstrap.com/docs/4.3/components/) - The design framework used.
+* Bootstrap
+* Javascript
+* HTML
+* CSS
+* jQuery
 
 
 
