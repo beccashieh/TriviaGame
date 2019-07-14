@@ -15,8 +15,8 @@ var seconds = 30;
 function countDown(){
     var timer = setInterval(function(){
         seconds--;
-        $("#timer").html(": " + seconds);
-        console.log(seconds);
+        $("#timer").html(`:${seconds}`);
+        // console.log(seconds);
         if (seconds <= 0){
             clearInterval(timer);
             $("#message").html("Your watch has ended").show();
@@ -99,9 +99,6 @@ function check(){
     for (var i = 0; i < choices.length; i++){
         if (choices[i].checked){
             userChoice = choices[i].value;
-            console.log(correctAns);
-            console.log(choices[i].checked);
-            console.log(userChoice, "Choice");
         }
     }
     //correct answers increase if the user selection matches the correct answer located at the end of each array, pos 5.
@@ -121,15 +118,4 @@ var audio = new Audio();
 audio.src = "assets/gameOfThrones.mp3";
 audio.play();
 
-
-
-    //timer will alot 30 seconds for each question. 
-        //if no answer selected, will say "Time's up!", show correct answer and picture.
-            //3 second timer for new question.
-        //if answer selected and is correct, will say "Correct!" and show picture.
-            //3 second timer for new question.
-        //if answer selected and is incorrect, will say "Incorrect!" and show correct answer and picture.
-            //3 second timer for new question.
-//tally kept (hidden) for correct and incorrect guesses.
-//tally will display after all questions have cycled through.
-    //include a restart button that will reset the tally and start game over.
+   
